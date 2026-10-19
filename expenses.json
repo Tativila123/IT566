@@ -4,5 +4,23 @@
         "category": "6",
         "description": "iugi",
         "amount": 5.3
+    },
+    {
+        "date": "1",
+        "category": "1",
+        "description": "1",
+        "amount": 1.0
+    },
+    {
+        "date": "4",
+        "category": "4",
+        "description": "4",
+        "amount": 4.0
+    },
+    {
+        "date": "1",
+        "category": "1",
+        "description": "1",
+        "amount": 1.0
     }
 ]

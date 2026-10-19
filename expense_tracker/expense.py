@@ -12,6 +12,8 @@ def add_expense():
         "amount" : float(Amount)
     }
     print(new_expense)
+    
+    
     try:
         with open("expenses.json", "r") as file:
             expenses = json.load(file)
@@ -22,3 +24,17 @@ def add_expense():
 
     with open("expenses.json", "w") as file:
         json.dump(expenses, file, indent=4)
+
+def view_expenses():
+    print("Estoy dentro de view_expenses")
+    try:
+        with open("expenses.json", "r") as file:
+            expenses = json.load(file)
+    except FileNotFoundError:
+        expenses = []
+
+    if expenses:
+        print(expenses)
+    else:
+        print("No expenses found.")
+        
