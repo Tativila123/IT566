@@ -1,3 +1,4 @@
+import expense
 def show_menu():
     print("1.Add expense") 
     print("2.View all expenses") 
