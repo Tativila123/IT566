@@ -1,3 +1,4 @@
+import json
 def add_expense():
     Date = input("Add date: ")
     Category = input("Add Category: ")
@@ -11,5 +12,13 @@ def add_expense():
         "amount" : float(Amount)
     }
     print(new_expense)
+    try:
+        with open("expenses.json", "r") as file:
+            expenses = json.load(file)
+    except FileNotFoundError:
+        expenses = []
 
-add_expense()
+    expenses.append(new_expense)
+
+    with open("expenses.json", "w") as file:
+        json.dump(expenses, file, indent=4)
