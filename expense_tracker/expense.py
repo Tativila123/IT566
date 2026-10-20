@@ -1,9 +1,9 @@
 import json
 def add_expense():
     Date = input("Add date: ")
-    Category = input("Add Category: ")
-    Description = input("what was the espense: ")
-    Amount = input("Add Amount: ")
+    Category = input("Add Category(Food, Rent, Transportation, Bills, Others): ")
+    Description = input("What did you buy or pay for? ")
+    Amount = input("What was the Amount: ")
 
     new_expense = {
         "date" : Date,
@@ -11,7 +11,10 @@ def add_expense():
         "description" : Description,
         "amount" : float(Amount)
     }
-    print(new_expense)
+    print("Date:", new_expense["date"])
+    print("Category:", new_expense["category"])
+    print("Description:", new_expense["description"])
+    print("Amount:", new_expense["amount"])
     
     
     try:
@@ -26,7 +29,7 @@ def add_expense():
         json.dump(expenses, file, indent=4)
 
 def view_expenses():
-    print("Estoy dentro de view_expenses")
+    
     try:
         with open("expenses.json", "r") as file:
             expenses = json.load(file)
@@ -37,4 +40,32 @@ def view_expenses():
         print(expenses)
     else:
         print("No expenses found.")
-        
+
+
+def filter_expenses():
+    category_to_find= input("Which category do you want to find (Food, Rent, Transportation, Bills, Others)?: ")
+    
+    try:
+        with open("expenses.json", "r") as file:
+            expenses = json.load(file)
+    except FileNotFoundError:
+        expenses = []
+
+    matching_expenses = []
+
+    for saved_expense in expenses:
+        if saved_expense["category"] == category_to_find:
+            matching_expenses.append(saved_expense)
+
+    
+    if matching_expenses:
+        for saved_expense in matching_expenses:
+            print("Date:", saved_expense["date"])
+            print("Category:", saved_expense["category"])
+            print("Description:", saved_expense["description"])
+            print("Amount:", saved_expense["amount"])
+            print()
+    else:
+        print("No expenses found for that category.")
+    
+

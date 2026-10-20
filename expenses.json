@@ -22,5 +22,29 @@
         "category": "1",
         "description": "1",
         "amount": 1.0
+    },
+    {
+        "date": "10/20/2026",
+        "category": "rent",
+        "description": "700",
+        "amount": 700.0
+    },
+    {
+        "date": "10/20/2026",
+        "category": "food",
+        "description": "meat",
+        "amount": 15.0
+    },
+    {
+        "date": "10/20/26",
+        "category": "Rent",
+        "description": "November Rent",
+        "amount": 750.0
+    },
+    {
+        "date": "10/20/26",
+        "category": "Rent",
+        "description": "december rent",
+        "amount": 600.0
     }
 ]

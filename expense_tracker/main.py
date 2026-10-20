@@ -12,7 +12,7 @@ def show_menu():
 def expense_entry():
     while True:
         show_menu()
-        option = input("choose an option: ")
+        option = input("Choose an option: ")
         if option == "1":
             expense.add_expense()
         elif option == "2":
