@@ -1,4 +1,5 @@
 import json
+import csv
 def add_expense():
     Date = input("Add date: ")
     Category = input("Add Category(Food, Rent, Transportation, Bills, Others): ")
@@ -69,3 +70,27 @@ def filter_expenses():
         print("No expenses found for that category.")
     
 
+def export_expenses():
+    try:
+        with open("expenses.json", "r") as file:
+            expenses = json.load(file)
+    except FileNotFoundError:
+        expenses = []
+
+    if expenses:
+        with open("expenses.csv", "w", newline="") as file:
+            exporter = csv.writer(file)
+
+            exporter.writerow(["date", "category", "description", "amount"])
+
+            for saved_expense in expenses:
+                exporter.writerow([
+                    saved_expense["date"],
+                    saved_expense["category"],
+                    saved_expense["description"],
+                    saved_expense["amount"]
+                ])
+
+        print("Expenses exported to expenses.csv.")
+    else:
+        print("No expenses to export.")

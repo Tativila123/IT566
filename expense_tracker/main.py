@@ -20,7 +20,7 @@ def expense_entry():
         elif option == "3":
             expense.filter_expenses()
         elif option == "4":
-            expense.export_csv()
+            expense.export_expenses()
         elif option == "5":
             print("Good bye")
             break
