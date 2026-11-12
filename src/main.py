@@ -1,4 +1,4 @@
-import expense
+from application import expense
 from ui.cli_user_interface import expense_entry
 
 
