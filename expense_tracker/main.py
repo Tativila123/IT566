@@ -26,4 +26,11 @@ def expense_entry():
             break
         else:
             print("Invalid option")
-expense_entry()
+
+            
+def main():
+    expense_entry()
+
+
+if __name__ == "__main__":
+    main()
