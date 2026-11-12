@@ -30,7 +30,6 @@ def add_expense():
         json.dump(expenses, file, indent=4)
 
 def view_expenses():
-    
     try:
         with open("expenses.json", "r") as file:
             expenses = json.load(file)
@@ -38,7 +37,12 @@ def view_expenses():
         expenses = []
 
     if expenses:
-        print(expenses)
+        for saved_expense in expenses:
+            print("Date:", saved_expense["date"])
+            print("Category:", saved_expense["category"])
+            print("Description:", saved_expense["description"])
+            print("Amount:", saved_expense["amount"])
+            print()
     else:
         print("No expenses found.")
 
