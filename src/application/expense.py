@@ -1,4 +1,4 @@
-import json
+
 import csv
 from persistence.persistence import load_expenses, save_expenses
 def add_expense():
