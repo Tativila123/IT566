@@ -1,18 +1,17 @@
-import expense
+
 def show_menu():
-    print("1.Add expense") 
-    print("2.View all expenses") 
-    print("3.Filter expenses") 
+    print("1.Add expense")
+    print("2.View all expenses")
+    print("3.Filter expenses")
     print("4.Export to CSV")
-    print("5.Exit") 
-    
-    
+    print("5.Exit")
 
 
-def expense_entry():
+def expense_entry(expense):
     while True:
         show_menu()
         option = input("Choose an option: ")
+
         if option == "1":
             expense.add_expense()
         elif option == "2":
@@ -26,11 +25,3 @@ def expense_entry():
             break
         else:
             print("Invalid option")
-
-            
-def main():
-    expense_entry()
-
-
-if __name__ == "__main__":
-    main()
