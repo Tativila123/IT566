@@ -23,11 +23,7 @@ def add_expense():
     save_expenses(expenses)
 
 def view_expenses():
-    try:
-        with open("expenses.json", "r") as file:
-            expenses = json.load(file)
-    except FileNotFoundError:
-        expenses = []
+    expenses = load_expenses()
 
     if expenses:
         for saved_expense in expenses:
