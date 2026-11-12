@@ -43,11 +43,7 @@ def view_expenses():
 def filter_expenses():
     category_to_find= input("Which category do you want to find (Food, Rent, Transportation, Bills, Others)?: ")
     
-    try:
-        with open("expenses.json", "r") as file:
-            expenses = json.load(file)
-    except FileNotFoundError:
-        expenses = []
+    expenses = load_expenses()
 
     matching_expenses = []
 
@@ -68,11 +64,7 @@ def filter_expenses():
     
 
 def export_expenses():
-    try:
-        with open("expenses.json", "r") as file:
-            expenses = json.load(file)
-    except FileNotFoundError:
-        expenses = []
+    expenses = load_expenses()
 
     if expenses:
         with open("expenses.csv", "w", newline="") as file:
