@@ -1,5 +1,6 @@
 import json
 import csv
+from persistence.persistence import load_expenses, save_expenses
 def add_expense():
     Date = input("Add date: ")
     Category = input("Add Category(Food, Rent, Transportation, Bills, Others): ")
@@ -16,18 +17,10 @@ def add_expense():
     print("Category:", new_expense["category"])
     print("Description:", new_expense["description"])
     print("Amount:", new_expense["amount"])
-    
-    
-    try:
-        with open("expenses.json", "r") as file:
-            expenses = json.load(file)
-    except FileNotFoundError:
-        expenses = []
 
+    expenses = load_expenses()
     expenses.append(new_expense)
-
-    with open("expenses.json", "w") as file:
-        json.dump(expenses, file, indent=4)
+    save_expenses(expenses)
 
 def view_expenses():
     try:
