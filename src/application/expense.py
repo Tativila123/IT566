@@ -59,6 +59,28 @@ def filter_expenses():
         print("No expenses found for that category.")
     
 
+def filter_expenses_by_date():
+    date_to_find = input("Which date do you want to find (MM-DD-YYYY)?: ")
+
+    expenses = load_expenses()
+
+    matching_expenses = []
+
+    for saved_expense in expenses:
+        if saved_expense["date"] == date_to_find:
+            matching_expenses.append(saved_expense)
+
+    if matching_expenses:
+        for saved_expense in matching_expenses:
+            print("Date:", saved_expense["date"])
+            print("Category:", saved_expense["category"])
+            print("Description:", saved_expense["description"])
+            print("Amount:", saved_expense["amount"])
+            print()
+    else:
+        print("No expenses found for that date.")
+
+
 def export_expenses():
     expenses = load_expenses()
 
