@@ -1,0 +1,8 @@
+db:
+  connection:
+    host: localhost
+    port: 8889
+    database: expenses
+    user: expenses_user
+    password: "CHANGE_ME"
+    
