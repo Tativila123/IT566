@@ -1,0 +1,103 @@
+
+import csv
+from persistence.persistence import load_expenses, save_expenses
+def add_expense():
+    Date = input("Add date: ")
+    Category = input("Add Category(Food, Rent, Transportation, Bills, Others): ")
+    Description = input("What did you buy or pay for? ")
+    Amount = input("What was the Amount: ")
+
+    new_expense = {
+        "date" : Date,
+        "category" : Category,
+        "description" : Description,
+        "amount" : float(Amount)
+    }
+    print("Date:", new_expense["date"])
+    print("Category:", new_expense["category"])
+    print("Description:", new_expense["description"])
+    print("Amount:", new_expense["amount"])
+
+    expenses = load_expenses()
+    expenses.append(new_expense)
+    save_expenses(expenses)
+
+def view_expenses():
+    expenses = load_expenses()
+
+    if expenses:
+        for saved_expense in expenses:
+            print("Date:", saved_expense["date"])
+            print("Category:", saved_expense["category"])
+            print("Description:", saved_expense["description"])
+            print("Amount:", saved_expense["amount"])
+            print()
+    else:
+        print("No expenses found.")
+
+
+def filter_expenses():
+    category_to_find= input("Which category do you want to find (Food, Rent, Transportation, Bills, Others)?: ")
+    
+    expenses = load_expenses()
+
+    matching_expenses = []
+
+    for saved_expense in expenses:
+        if saved_expense["category"] == category_to_find:
+            matching_expenses.append(saved_expense)
+
+    
+    if matching_expenses:
+        for saved_expense in matching_expenses:
+            print("Date:", saved_expense["date"])
+            print("Category:", saved_expense["category"])
+            print("Description:", saved_expense["description"])
+            print("Amount:", saved_expense["amount"])
+            print()
+    else:
+        print("No expenses found for that category.")
+    
+
+def filter_expenses_by_date():
+    date_to_find = input("Which date do you want to find (MM-DD-YYYY)?: ")
+
+    expenses = load_expenses()
+
+    matching_expenses = []
+
+    for saved_expense in expenses:
+        if saved_expense["date"] == date_to_find:
+            matching_expenses.append(saved_expense)
+
+    if matching_expenses:
+        for saved_expense in matching_expenses:
+            print("Date:", saved_expense["date"])
+            print("Category:", saved_expense["category"])
+            print("Description:", saved_expense["description"])
+            print("Amount:", saved_expense["amount"])
+            print()
+    else:
+        print("No expenses found for that date.")
+
+
+def export_expenses():
+    expenses = load_expenses()
+
+    if expenses:
+        with open("expenses.csv", "w", newline="") as file:
+            exporter = csv.writer(file)
+
+            exporter.writerow(["date", "category", "description", "amount"])
+
+            for saved_expense in expenses:
+                exporter.writerow([
+                    saved_expense["date"],
+                    saved_expense["category"],
+                    saved_expense["description"],
+                    saved_expense["amount"]
+                ])
+
+        print("Expenses exported to expenses.csv.")
+    else:
+        print("No expenses to export.")

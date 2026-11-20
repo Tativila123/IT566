@@ -1,0 +1,4 @@
+# Omit these files
+.venv
+Pipfile.lock
+config/app_config.yaml
