@@ -1,8 +1,13 @@
 db:
   connection:
     host: localhost
-    port: 8889
+    port: 3306
     database: expenses
     user: expenses_user
     password: "CHANGE_ME"
-    
+  pool:
+    pool_name: expenses_pool
+    pool_size: 3
+    pool_reset_session: true
+    connection_timeout: 5
+    autocommit: false
