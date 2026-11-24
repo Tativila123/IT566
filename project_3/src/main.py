@@ -5,7 +5,7 @@ from argparse import ArgumentParser
 
 from application import expense
 from ui.cli_user_interface import expense_entry
-
+from persistence.mysql_persistence_wrapper import MySQLPersistenceWrapper
 
 def main():
     args = configure_and_parse_commandline_arguments()
@@ -15,8 +15,9 @@ def main():
         with open(args.configfile, "r") as f:
             config = yaml.load(f.read(), Loader=yaml.SafeLoader)
 
-    expense_entry(expense)
+        db = MySQLPersistenceWrapper(config)
 
+    expense_entry(expense)
 
 def configure_and_parse_commandline_arguments():
     """Configure and parse command-line arguments."""
