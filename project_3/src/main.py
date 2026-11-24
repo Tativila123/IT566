@@ -16,6 +16,7 @@ def main():
             config = yaml.load(f.read(), Loader=yaml.SafeLoader)
 
         db = MySQLPersistenceWrapper(config)
+        print(db.get_all_expenses())
 
     expense_entry(expense)
 

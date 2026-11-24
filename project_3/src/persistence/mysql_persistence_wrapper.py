@@ -21,3 +21,15 @@ class MySQLPersistenceWrapper:
             user=self._db_config["connection"]["user"],
             password=self._db_config["connection"]["password"],
         )
+
+    def get_all_expenses(self):
+        """Read all expenses from MySQL."""
+        with self._db_pool.get_connection() as connection:
+            with connection.cursor(prepared=True) as cursor:
+                cursor.execute(
+                    "SELECT expenses.id, expenses.`date`, categories.category, "
+                    "expenses.description, expenses.amount "
+                    "FROM expenses "
+                    "JOIN categories ON expenses.fk_category = categories.id"
+                )
+                return cursor.fetchall()        
